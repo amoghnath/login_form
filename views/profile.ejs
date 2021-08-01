@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+<head>
+	<title>Node Authentication</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Georama:wght@200;400&display=swap" rel="stylesheet"> 
+<style>
+		body 		{ padding-top:80px; word-wrap:break-word; 
+			font-family: 'Georama', sans-serif;}
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<div class="page-header text-center">
+		<img src="https://img.icons8.com/office/80/000000/gender-neutral-user.png"/>
+		<h3>Profile Page</h3>
+		<a href="/logout" class="button">Logout</a>
+	</div>
+<hr>
+	
+		<div class="callout secondary text-center">
+				<h3><img src="https://img.icons8.com/office/35/000000/user.png"/>Local</h3>
+
+				<% if (user.local.email) { %>
+					<p>
+						<strong>ID</strong>: <%= user._id %><br>
+						<strong>Email</strong>: <%= user.local.email %><br>
+					</p>
+					
+				<% } %>
+				<h3><img src="https://img.icons8.com/office/35/000000/facebook.png"/></h3>
+
+				<% if (user.facebook.token) { %>
+					<p>
+						<strong>id</strong>: <%= user.facebook.id %><br>
+						<strong>email</strong>: <%= user.facebook.email %><br>
+						<strong>name</strong>: <%= user.facebook.name %><br>
+					</p>
+
+				<% } else { %>
+					<a href="/connect/facebook" class="button">Connect Facebook</a>
+				<% } %>
+
+				<h3><img src="https://img.icons8.com/office/35/000000/twitter.png"/></h3>
+
+		<% if (user.twitter.token) { %>
+			<p>
+				<strong>id</strong>: <%= user.twitter.id %><br>
+				<strong>display name</strong>: <%= user.twitter.displayName %><br>
+				<strong>username</strong>: <%= user.twitter.username %>
+			</p>
+
+		<% } else { %>
+			<a href="/connect/twitter" class="button">Connect Twitter</a>
+		<% } %>
+
+		<h3><img src="https://img.icons8.com/office/35/000000/google-logo.png"/></h3>
+
+		<% if (user.google.token) { %>
+			<p>
+				<strong>id</strong>: <%= user.google.id %><br>
+				<strong>email</strong>: <%= user.google.email %><br>
+				<strong>name</strong>: <%= user.google.name %>
+			</p>
+	
+		<% } else { %>
+			<a href="/connect/google" class="button">Connect Google</a>
+		<% } %>
+		</div>
+</div>
+</body>
+</html>

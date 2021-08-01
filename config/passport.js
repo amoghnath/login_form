@@ -123,7 +123,6 @@ module.exports = (passport) => {
                         });
                     } else {
                         const user = req.user;
-
                         user.facebook.id = profile.id;
                         user.facebook.token = token;
                         user.facebook.name = profile.name.givenName + " " + profile.name.familyName;

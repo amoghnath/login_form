@@ -35,7 +35,7 @@ module.exports = (app, passport) => {
     app.post(
         "/signup",
         passport.authenticate("local-signup", {
-            successRedirect: "/profile",
+            successRedirect: "/",
             failureRedirect: "/signup",
             failureFlash: true,
         })
@@ -104,6 +104,7 @@ module.exports = (app, passport) => {
     app.get("/connect/local", (req, res) => {
         res.render("connect-local.ejs", { message: req.flash("loginMessage") });
     });
+    
     app.post(
         "/connect/local",
         passport.authenticate("local-signup", {
