@@ -61,21 +61,21 @@ module.exports = (app, passport) => {
         })
     );
 
-    // twitter
+    // github
 
-    app.get("/auth/twitter", passport.authenticate("twitter", { scope: "email" }));
+    app.get("/auth/github", passport.authenticate("github", { scope: "email" }));
     app.get(
-        "/auth/twitter/callback",
-        passport.authenticate("twitter", {
+        "/auth/github/callback",
+        passport.authenticate("github", {
             successRedirect: "/profile",
             failureRedirect: "/",
         })
     );
 
-    app.get("/connect/twitter", passport.authorize("twitter", { scope: "email" }));
+    app.get("/connect/github", passport.authorize("github", { scope: "email" }));
     app.get(
-        "/connect/twitter/callback",
-        passport.authorize("twitter", {
+        "/connect/github/callback",
+        passport.authorize("github", {
             successRedirect: "/profile",
             failureRedirect: "/",
         })

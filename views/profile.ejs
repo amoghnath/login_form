@@ -45,17 +45,17 @@
 					<a href="/connect/facebook" class="button">Connect Facebook</a>
 				<% } %>
 
-				<h3><img src="https://img.icons8.com/office/35/000000/twitter.png"/></h3>
+				<h3><img src="https://img.icons8.com/office/35/000000/github.png"/></h3>
 
-		<% if (user.twitter.token) { %>
+		<% if (user.github.token) { %>
 			<p>
-				<strong>id</strong>: <%= user.twitter.id %><br>
-				<strong>display name</strong>: <%= user.twitter.displayName %><br>
-				<strong>username</strong>: <%= user.twitter.username %>
+				<strong>id</strong>: <%= user.github.id %><br>
+				<strong>display name</strong>: <%= user.github.displayName %><br>
+				<strong>username</strong>: <%= user.github.username %>
 			</p>
 
 		<% } else { %>
-			<a href="/connect/twitter" class="button">Connect Twitter</a>
+			<a href="/connect/github" class="button">Connect github</a>
 		<% } %>
 
 		<h3><img src="https://img.icons8.com/office/35/000000/google-logo.png"/></h3>

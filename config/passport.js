@@ -3,7 +3,7 @@ dotenv.config();
 
 const LocalStrategy = require("passport-local").Strategy;
 const FacebookStrategy = require("passport-facebook").Strategy;
-const TwitterStrategy = require("passport-twitter").Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
 const User = require("../app/models/user");
 
@@ -139,24 +139,24 @@ module.exports = (passport) => {
     );
 
     passport.use(
-        new TwitterStrategy(
+        new GitHubStrategy(
             {
-                consumerKey: process.env.TWITTER_consumerKey,
-                consumerSecret: process.env.TWITTER_consumerSecret,
-                callbackURL: process.env.TWITTER_callbackURL,
+                clientID: process.env.GITHUB_consumerKey,
+                clientSecret: process.env.GITHUB_consumerSecret,
+                callbackURL: process.env.GITHUB_callbackURL,
                 passReqToCallback: true,
             },
             (req, token, tokenSecret, profile, done) => {
                 process.nextTick(() => {
                     if (!req.user) {
-                        User.findOne({ "twitter.id": profile.id }, (err, user) => {
+                        User.findOne({ "github.id": profile.id }, (err, user) => {
                             if (err) return done(err);
 
                             if (user) {
-                                if (!user.twitter.token) {
-                                    user.twitter.token = token;
-                                    user.twitter.username = profile.username;
-                                    user.twitter.displayName = profile.displayName;
+                                if (!user.github.token) {
+                                    user.github.token = token;
+                                    user.github.username = profile.username;
+                                    user.github.displayName = profile.displayName;
 
                                     user.save((err) => {
                                         if (err) throw err;
@@ -167,10 +167,10 @@ module.exports = (passport) => {
                                 return done(null, user);
                             } else {
                                 const newUser = new User();
-                                newUser.twitter.id = profile.id;
-                                newUser.twitter.token = token;
-                                newUser.twitter.username = profile.username;
-                                newUser.twitter.displayName = profile.displayName;
+                                newUser.github.id = profile.id;
+                                newUser.github.token = token;
+                                newUser.github.username = profile.username;
+                                newUser.github.displayName = profile.displayName;
 
                                 newUser.save((err) => {
                                     if (err) throw err;
@@ -180,10 +180,10 @@ module.exports = (passport) => {
                         });
                     } else {
                         const user = req.user;
-                        user.twitter.id = profile.id;
-                        user.twitter.token = token;
-                        user.twitter.username = profile.username;
-                        user.twitter.displayName = profile.displayName;
+                        user.github.id = profile.id;
+                        user.github.token = token;
+                        user.github.username = profile.username;
+                        user.github.displayName = profile.displayName;
 
                         user.save((err) => {
                             if (err) throw err;
