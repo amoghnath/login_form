@@ -1,0 +1,17 @@
+.container {
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    z-index: 15;
+    top: 30%;
+    left: 50%;
+    margin: -100px 0 0 -150px;
+}
+
+.menu {
+ background-color: rgb(36, 36, 36);
+}
+
+.menu li a {
+ color: rgb(255, 255, 255);
+}

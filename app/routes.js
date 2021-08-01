@@ -35,7 +35,7 @@ module.exports = (app, passport) => {
     app.post(
         "/signup",
         passport.authenticate("local-signup", {
-            successRedirect: "/",
+            successRedirect: "/login",
             failureRedirect: "/signup",
             failureFlash: true,
         })
@@ -63,7 +63,7 @@ module.exports = (app, passport) => {
 
     // github
 
-    app.get("/auth/github", passport.authenticate("github", { scope: "email" }));
+    app.get("/auth/github", passport.authenticate("github", { scope: ["email"] }));
     app.get(
         "/auth/github/callback",
         passport.authenticate("github", {
@@ -72,7 +72,7 @@ module.exports = (app, passport) => {
         })
     );
 
-    app.get("/connect/github", passport.authorize("github", { scope: "email" }));
+    app.get("/connect/github", passport.authorize("github", { scope: ["email"] }));
     app.get(
         "/connect/github/callback",
         passport.authorize("github", {

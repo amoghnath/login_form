@@ -155,8 +155,8 @@ module.exports = (passport) => {
                             if (user) {
                                 if (!user.github.token) {
                                     user.github.token = token;
+                                    user.github.photos = profile.photos[1];
                                     user.github.username = profile.username;
-                                    user.github.displayName = profile.displayName;
 
                                     user.save((err) => {
                                         if (err) throw err;
@@ -170,7 +170,6 @@ module.exports = (passport) => {
                                 newUser.github.id = profile.id;
                                 newUser.github.token = token;
                                 newUser.github.username = profile.username;
-                                newUser.github.displayName = profile.displayName;
 
                                 newUser.save((err) => {
                                     if (err) throw err;
@@ -183,7 +182,6 @@ module.exports = (passport) => {
                         user.github.id = profile.id;
                         user.github.token = token;
                         user.github.username = profile.username;
-                        user.github.displayName = profile.displayName;
 
                         user.save((err) => {
                             if (err) throw err;
